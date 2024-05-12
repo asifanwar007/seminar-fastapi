@@ -20,6 +20,8 @@ async def check_palindrome(request: Request):
 
 def check_palindrome(word):
     # word = word.lower()
+    # to remove space or alpha numeric
+    # word = ''.join(char for char in word if char.isalnum())
     word_len = len(word)
     for i in range(word_len // 2):
         if word[i] != word[word_len - i - 1]:

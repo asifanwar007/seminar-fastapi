@@ -15,9 +15,18 @@ async def read_root(request: Request):
 async def check_palindrome(request: Request):
     form_data = await request.form()
     word = form_data["word"]
-    is_palindrome = word == word[::-1]
+    is_palindrome = check_palindrome(word)
     return templates.TemplateResponse("result.html", {"request": request, "word": word, "is_palindrome": is_palindrome})
 
+def check_palindrome(word):
+    # word = word.lower()
+    word_len = len(word)
+    for i in range(word_len // 2):
+        if word[i] != word[word_len - i - 1]:
+            return False
+    return True
+        
+    
 if __name__ == "__main__":
     import uvicorn
     try:
